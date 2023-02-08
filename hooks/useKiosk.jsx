@@ -1,5 +1,5 @@
-const { default: KioskContext } = require('@/context/KioskProvider');
-const { useContext } = require('react');
+import KioskContext from '@/context/KioskProvider';
+import { useContext } from 'react';
 
 const useKiosk = () => useContext(KioskContext);
 
