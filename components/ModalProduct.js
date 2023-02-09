@@ -1,8 +1,14 @@
-import useKiosk from '@/hooks/useKiosk';
+import { useState } from 'react';
+
 import Image from 'next/image';
+
+import useKiosk from '@/hooks/useKiosk';
+
 import { moneyFormatter } from '@/helpers';
 
 const ModalProduct = () => {
+  const [qty, setQty] = useState(1);
+
   const { product, handleChangeModal } = useKiosk();
 
   return (
@@ -38,6 +44,57 @@ const ModalProduct = () => {
         <p className="mt-5 font-black text-5xl text-amber-500">
           {moneyFormatter(product.price)}
         </p>
+        <div className="flex gap-4 mt-5">
+          <button
+            type="button"
+            onClick={() => {
+              if (qty <= 1) {
+                return;
+              }
+              setQty(qty - 1);
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-7 h-7"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </button>
+          <p className="text-3xl">{qty}</p>
+          <button
+            type="button"
+            onClick={() => {
+              if (qty >= 5) {
+                return;
+              }
+              setQty(qty + 1);
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-7 h-7"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
