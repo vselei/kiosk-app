@@ -40,10 +40,11 @@ const KioskProvider = ({ children }) => {
     if (order.some(o => o.id === product.id)) {
       const orderUpdated = order.map(p => (p.id === product.id ? product : p));
       setOrder(orderUpdated);
-      return;
+    } else {
+      setOrder([...order, product]);
     }
-
-    setOrder([...order, product]);
+    
+    setModal(false);
   };
 
   return (
@@ -56,7 +57,8 @@ const KioskProvider = ({ children }) => {
         handleSetProduct,
         handleChangeModal,
         modal,
-        handleSetOrder
+        handleSetOrder,
+        order
       }}
     >
       {children}

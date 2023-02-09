@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
@@ -8,8 +8,17 @@ import { moneyFormatter } from '@/helpers';
 
 const ModalProduct = () => {
   const [qty, setQty] = useState(1);
+  const [edition, setEdition] = useState(false);
 
-  const { product, handleChangeModal, handleSetOrder } = useKiosk();
+  const { product, handleChangeModal, handleSetOrder, order } = useKiosk();
+
+  useEffect(() => {
+    if (order.some(o => o.id === product.id)) {
+      setEdition(true);
+      const productEdition = order.find(o => o.id === product.id);
+      setQty(productEdition.qty);
+    }
+  }, [product, order]);
 
   return (
     <div className="md:flex gap-10">
@@ -100,7 +109,7 @@ const ModalProduct = () => {
           className="bg-amber-500 hover:bg-amber-600 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
           onClick={() => handleSetOrder({ ...product, qty })}
         >
-          Adicionar pedido
+          {edition ? 'Editar pedido' : 'Adicionar pedido'}
         </button>
       </div>
     </div>
