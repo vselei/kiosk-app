@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <>
       <Image width={150} height={100} src="/assets/img/logo.svg" alt="Logo" />
-      <nav className="mt-20">
+      <nav className="mt-14">
         {categories.map(category => (
           <Category key={category.id} category={category} />
         ))}
