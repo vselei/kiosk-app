@@ -1,7 +1,23 @@
 import Sidebar from '@/components/Sidebar';
+import useKiosk from '@/hooks/useKiosk';
 import Head from 'next/head';
+import ReactModal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
+
+ReactModal.setAppElement('#__next');
 
 const Layout = ({ children, page }) => {
+  const { modal } = useKiosk();
   const message = `Café - ${page}`;
 
   return (
@@ -18,6 +34,12 @@ const Layout = ({ children, page }) => {
           <div className="p-10 mt-10">{children}</div>
         </main>
       </div>
+
+      {modal && (
+        <ReactModal isOpen={modal} style={customStyles}>
+          <h1>Modal...</h1>
+        </ReactModal>
+      )}
     </>
   );
 };

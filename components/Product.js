@@ -3,7 +3,7 @@ import useKiosk from '@/hooks/useKiosk';
 import Image from 'next/image';
 
 const Product = ({ product }) => {
-  const { handleSetProduct } = useKiosk();
+  const { handleSetProduct, handleChangeModal } = useKiosk();
   const { name, price, image } = product;
 
   return (
@@ -22,7 +22,10 @@ const Product = ({ product }) => {
         <button
           type="button"
           className="bg-amber-500 hover:bg-amber-600 text-white w-full mt-5 p-3 uppercase font-bold"
-          onClick={() => handleSetProduct(product)}
+          onClick={() => {
+            handleChangeModal();
+            handleSetProduct(product);
+          }}
         >
           Adicionar
         </button>
