@@ -3,6 +3,9 @@ import Sidebar from '@/components/Sidebar';
 import useKiosk from '@/hooks/useKiosk';
 import Head from 'next/head';
 import ReactModal from 'react-modal';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const customStyles = {
   content: {
@@ -41,6 +44,8 @@ const Layout = ({ children, page }) => {
           <ModalProduct />
         </ReactModal>
       )}
+
+      <ToastContainer />
     </>
   );
 };
