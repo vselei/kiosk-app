@@ -2,10 +2,12 @@ import Sidebar from '@/components/Sidebar';
 import Head from 'next/head';
 
 const Layout = ({ children, page }) => {
+  const message = `Café - ${page}`
+
   return (
     <>
       <Head>
-        <title>Café - {page}</title>
+        <title>{message}</title>
         <meta name="description" content="Quiosque Cafeteria" />
       </Head>
       <div className="md:flex">
