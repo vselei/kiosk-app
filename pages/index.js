@@ -1,7 +1,13 @@
-import Layout from "@/layout/Layout";
+import Layout from '@/layout/Layout';
+import useKiosk from '@/hooks/useKiosk';
 
 export default function Home() {
-  return <Layout page={'Hello'}>
-    <p>Hello world</p>
-  </Layout>;
+  const { currentCategory } = useKiosk();
+
+  return (
+    <Layout page={`Menu ${currentCategory?.name}`}>
+      <h1 className='text-4xl font-black'>{currentCategory?.name}</h1>
+      <p className='text-2xl my-10'>Escolha e personalize seu pedido</p>
+    </Layout>
+  );
 }
