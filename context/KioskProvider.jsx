@@ -6,6 +6,7 @@ const KioskContext = createContext();
 const KioskProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState({});
+  const [product, setProduct] = useState({});
 
   const getCategories = async () => {
     const { data } = await axios('/api/categories');
@@ -17,12 +18,16 @@ const KioskProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    setCurrentCategory(categories[0])
-  }, [categories])
+    setCurrentCategory(categories[0]);
+  }, [categories]);
 
   const handleClickCategory = id => {
     const category = categories.filter(cat => cat.id === id);
     setCurrentCategory(category[0]);
+  };
+
+  const handleSetProduct = p => {
+    setProduct(p);
   };
 
   return (
@@ -30,7 +35,9 @@ const KioskProvider = ({ children }) => {
       value={{
         categories,
         handleClickCategory,
-        currentCategory
+        currentCategory,
+        product,
+        handleSetProduct
       }}
     >
       {children}
