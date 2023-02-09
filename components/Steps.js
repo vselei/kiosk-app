@@ -1,4 +1,3 @@
-import useKiosk from '@/hooks/useKiosk';
 import { useRouter } from 'next/router';
 
 const steps = [
@@ -22,11 +21,14 @@ const steps = [
 const Steps = () => {
   const router = useRouter();
 
-  const { handleChangeStep, step } = useKiosk();
-
   const calcProgress = () => {
-    const percentage = (step / 3) * 100;
-    return percentage;
+    if (router.pathname === '/') {
+      return 5
+    } else if (router.pathname === '/summary') {
+      return 50
+    } else {
+      return 100;
+    }
   };
 
   return (
@@ -36,7 +38,6 @@ const Steps = () => {
           <button
             onClick={() => {
               router.push(step.url);
-              handleChangeStep(step.step);
             }}
             className="text-2xl font-bold"
             key={step.step}
