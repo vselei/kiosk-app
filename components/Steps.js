@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+
 const steps = [
   {
     step: 1,
@@ -17,11 +19,21 @@ const steps = [
 ];
 
 const Steps = () => {
+  const router = useRouter();
+
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-5">
         {steps.map(step => (
-          <button className="text-2xl font-bold" key={step.step}>{step.name}</button>
+          <button
+            onClick={() => {
+              router.push(step.url);
+            }}
+            className="text-2xl font-bold"
+            key={step.step}
+          >
+            {step.name}
+          </button>
         ))}
       </div>
     </>
