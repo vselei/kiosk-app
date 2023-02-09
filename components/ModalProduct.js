@@ -9,7 +9,7 @@ import { moneyFormatter } from '@/helpers';
 const ModalProduct = () => {
   const [qty, setQty] = useState(1);
 
-  const { product, handleChangeModal } = useKiosk();
+  const { product, handleChangeModal, handleSetOrder } = useKiosk();
 
   return (
     <div className="md:flex gap-10">
@@ -95,6 +95,13 @@ const ModalProduct = () => {
             </svg>
           </button>
         </div>
+        <button
+          type="button"
+          className="bg-amber-500 hover:bg-amber-600 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
+          onClick={() => handleSetOrder({ ...product, qty })}
+        >
+          Adicionar pedido
+        </button>
       </div>
     </div>
   );
