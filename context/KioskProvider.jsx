@@ -37,7 +37,7 @@ const KioskProvider = ({ children }) => {
     setModal(!modal);
   };
 
-  const handleSetOrder = ({ categoryId, image, ...product }) => {
+  const handleSetOrder = ({ categoryId, ...product }) => {
     if (order.some(o => o.id === product.id)) {
       const orderUpdated = order.map(p => (p.id === product.id ? product : p));
       setOrder(orderUpdated);
