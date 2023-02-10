@@ -1,9 +1,10 @@
+import { moneyFormatter } from '@/helpers';
 import useKiosk from '@/hooks/useKiosk';
 import Layout from '@/layout/Layout';
 import { useCallback, useEffect } from 'react';
 
 const Total = () => {
-  const { order, name, setName } = useKiosk();
+  const { order, name, setName, handlePutOrder,total } = useKiosk();
 
   const proveOrder = useCallback(() => {
     return order.length === 0 || name === '' || name.length < 3;
@@ -12,10 +13,6 @@ const Total = () => {
   useEffect(() => {
     proveOrder();
   }, [order, proveOrder]);
-
-  const handlePutOrder = e => {
-    e.preventDefault();
-  };
 
   return (
     <Layout page="Confirmar Pedido">
@@ -39,7 +36,7 @@ const Total = () => {
         </div>
         <div className="mt-10">
           <p className="text-2xl">
-            Total a pagar: <span className="font-bold">$200</span>
+            Total a pagar: <span className="font-bold">{moneyFormatter(total)}</span>
           </p>
         </div>
         <div className="mt-5">
