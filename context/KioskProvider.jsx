@@ -78,6 +78,18 @@ const KioskProvider = ({ children }) => {
 
   const handlePutOrder = async e => {
     e.preventDefault();
+
+    try {
+      const { data } = await axios.post('/api/orders', {
+        order,
+        name,
+        total,
+        date: Date.now().toString()
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
