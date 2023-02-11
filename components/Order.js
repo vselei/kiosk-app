@@ -1,11 +1,18 @@
 import { moneyFormatter } from '@/helpers';
+import axios from 'axios';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 const Order = ({ order }) => {
   const { id, name, total, order: o } = order;
 
-  const orderFullfil = () => {
-    console.log('Completando...', id);
+  const orderFullfil = async () => {
+    try {
+      await axios.post(`/api/orders/${id}`);
+      toast.success('Pedido finalizado com sucesso!');
+    } catch (error) {
+      toast.error('Erro ao finalizar o pedido');
+    }
   };
 
   return (
