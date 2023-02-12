@@ -47,6 +47,11 @@ Configurar package.json:
 }
 ```
 
+Seeding
+```
+npx prisma db seed
+```
+
 Criar arquivo .env:
 ```
 DATABASE_URL="mysql://user:password@localhost:3306/schema"
